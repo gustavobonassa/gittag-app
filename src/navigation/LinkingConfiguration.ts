@@ -12,19 +12,19 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          Repositories: {
             screens: {
-              TabOneScreen: 'one',
+              RepositoriesScreen: 'one',
             },
           },
-          TabTwo: {
+          Settings: {
             screens: {
-              TabTwoScreen: 'two',
+              SettingsScreen: 'two',
             },
           },
         },
       },
-      NotFound: '*',
+      Repository: 'three',
     },
   },
 };
