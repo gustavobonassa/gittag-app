@@ -5,9 +5,9 @@ function validateNewTag(tag: string, data: IRepository) {
     return "Digite uma tag";
   }
 
-  const tagExist = (data?.tags).find((t) => t === tag);
+  const tagExist = (data?.tags).find((t) => t.toLowerCase() === tag.toLowerCase());
   if (tagExist) {
-    return "Essa tag ja existe";
+    return "Essa tag já existe";
   }
 
   return false;
