@@ -61,8 +61,7 @@ function RepositoriesScreen(props: IRepositoriesScreen) {
         data={filteredRepositories}
         style={{
           backgroundColor: colors.repositoriesList,
-          padding: 15,
-          paddingTop: 10,
+          padding: 10,
         }}
         onRefresh={() => getStarredRepositories()}
         refreshing={refreshing}

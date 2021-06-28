@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tagContainer: {
+    flex: 1,
     flexDirection: "row",
     marginTop: 10,
     marginLeft: -5,

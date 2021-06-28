@@ -1,9 +1,7 @@
 import * as React from "react";
 import store from "../../system/Store";
 
-// import EditScreenInfo from "../components/EditScreenInfo";
 import { ActivityIndicator, Alert, ScrollView, Text, View } from "react-native";
-import Button from "../../components/Button/Button";
 import styles from "./Repository.style";
 
 import { observer } from "mobx-react";
@@ -52,7 +50,7 @@ function RepositoryScreen(props: any) {
     try {
       const newTags = [tag, ...data.tags]
       const response = await editTag(data.id, newTags, store.token);
-      updateTag(response.tags);
+      updateTag(response?.tags || []);
       setTag("");
       toast("Tag adicionada com sucesso");
     } catch (error) {
@@ -65,7 +63,7 @@ function RepositoryScreen(props: any) {
     const tags = data.tags.filter((tag: string) => tag !== t);
 
     const response = await editTag(data.id, tags, store.token);
-    updateTag(response.tags);
+    updateTag(response?.tags || []);
     setTag("");
     toast("Tag removida com sucesso");
   }

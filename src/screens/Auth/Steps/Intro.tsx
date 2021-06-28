@@ -15,10 +15,7 @@ const Intro = (props: IIntro) => {
           GitTag
         </Text>
         <Text style={styles.slideOneList}>
-          - O melhor tagger ja feito
-        </Text>
-        <Text style={styles.slideOneList}>
-          - Gerencie seus repositorios favoritos
+          - Gerencie seus repositórios favoritos
         </Text>
         <Text style={styles.slideOneList}>
           - Adicione e remova Tags

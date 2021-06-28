@@ -24,19 +24,21 @@ const RepositoryItem = (props: IRepositoryItem) => {
       onPress={() => onPress(item)}
       activeOpacity={0.8}
     >
-      <View style={styles.itemLeft}>
+      {/* <View style={styles.itemLeft}>
         <AntDesign name="star" size={50} color="orange" />
-      </View>
+      </View> */}
       <View style={styles.itemRight}>
         <Text style={[styles.itemTitle, { color: colors.text }]}>
           {item.name}
         </Text>
-        <Text
-          style={[styles.itemDescription, { color: colors.text }]}
-          numberOfLines={2}
-        >
-          {item.description}
-        </Text>
+        {!!item.description && (
+          <Text
+            style={[styles.itemDescription, { color: colors.text }]}
+            numberOfLines={2}
+          >
+            {item.description}
+          </Text>
+        )}
         <View
           style={{
             width: "100%",

@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   },
   itemTitle:{
     fontSize: 20,
+    fontWeight: "bold",
   },
   itemDescription:{
     fontSize: 16,

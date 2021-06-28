@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#aaa",
+    borderBottomColor: "rgba(0, 0, 0, 0.1)",
     marginBottom: 10,
     alignItems: "center",
   },
