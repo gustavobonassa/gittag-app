@@ -43,10 +43,10 @@ function InputFilter(props: IInputFilter) {
         name="search"
         size={17}
         style={styles.icon}
-        color={dark ? "#000000bc" : "rgba(0, 0, 0, .4)"}
+        color={dark ? "#fff" : "rgba(0, 0, 0, .4)"}
       />
       <TextInput
-        placeholderTextColor="rgba(0, 0, 0, .3)"
+        placeholderTextColor={colors.placeholder}
         placeholder="Buscar por repositório ou tag"
         ref={inputFilterRef}
         style={[
@@ -54,6 +54,7 @@ function InputFilter(props: IInputFilter) {
           style,
           {
             backgroundColor: colors.searchBarInput,
+            color: colors.text,
           },
         ]}
         onFocus={() => setFocused(true)}
