@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://e3362d0390bb.ngrok.io",
+  baseURL: "https://gittag-backend.herokuapp.com/",
 });
 
 export default api;
