@@ -65,7 +65,7 @@ Essa tela permite alterar o tema do aplicativo e tambem sair da sua conta
 npm install -g expo-cli
 ```
 
-2 - Instale as dependencias do projeto:
+2 - Instale as dependencias do projeto utilizando [yarn](https://yarnpkg.com/):
 ```
 yarn
 ```
@@ -91,3 +91,9 @@ yarn test
 - Faltou varios testes para componentes e telas por falta de tempo. (Vou tentar fazer ainda essa semana, mesmo que ja tenham avaliado)
 
 - O backend só atualiza os repositórios com estrela quando faz login ou cria conta
+
+- Falta adicionar comentários no código
+
+## Contato para Spam
+
+Gustavo Bonassa - gustavo.bonassa1@gmail.com
