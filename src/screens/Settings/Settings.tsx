@@ -9,7 +9,6 @@ import { runInAction } from "mobx";
 import { observer } from "mobx-react";
 import { useTheme } from '@react-navigation/native';
 import Colors from "../../constants/Colors";
-import { Feather } from "@expo/vector-icons";
 
 function SettingsScreen() {
   const [darkMode, setDarkMode] = React.useState(false);
