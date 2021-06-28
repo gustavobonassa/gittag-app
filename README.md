@@ -13,7 +13,7 @@ Este projeto foi desenvolvido para o gerenciamento de repositórios com estrela 
 
 Toda a lógica dos componentes são extraídas para um arquivo externo. Exemplo: Componente Repositórios: `Repository.tsx`, a logica para filtrar os repositórios fica em `Repository.logic.ts`. Dessa forma facilita criar testes para essa função. Os testes ficam na mesma pasta dos componentes ou funções testado dessa forma: `Repository.logic.test.ts`.
 
-Para o gerenciamento de estados globais foi utilizado o [Mobx](https://mobx.js.org/README.html). O principal fator da escolha dessa biblioteca foi a facilidade de uso. Diferente do redux onde é necessário fazer a configuração, criar actions, reducers..., no Mobx eu consigo criar um store e transformar ele em observável, e meu componentes são observadores e são atualizados sempre que meu store muda.
+Para o gerenciamento de estados globais foi utilizado o [Mobx](https://mobx.js.org/README.html). O principal fator da escolha dessa biblioteca foi a facilidade de uso. Diferente do redux onde é necessário fazer a configuração, criar actions, reducers..., no Mobx eu consigo criar um store e transformar ele em observável, e meus componentes são observadores e são atualizados sempre que meu store muda.
 
 ## Requisitos
 
