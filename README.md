@@ -77,14 +77,14 @@ expo start
 
 Voce pode rodar um emulador ou baixar o app Expo Go no seu celular e ler o QR Code que vai aparecer na tela.
 
-Link para o backend: [Backend GitTag]()
+Link para o backend: [Backend GitTag](https://github.com/gustavobonassa/gittag-backend)
 
 Para rodar os testes:
 ```
 yarn test
 ```
 
-## Consideracoes
+## Considerações
 
 - A lógica que eu usei no backend pra armazenar os repositórios e tal não foi a melhor escolha. Dito isso, também não foi feito testes e foi tudo feito em JavaScript. Já que o prazo era curto, eu fiz o backend da forma mais simples que consegui e armazenei meus esforços para o Mobile.
 
