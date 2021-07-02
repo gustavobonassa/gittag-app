@@ -1,6 +1,6 @@
 import { IRepository } from "../../types/Repository.interface";
 
-function filterRepositories(text: string, repositories: IRepository[]) {
+function filterRepositories(text: string, repositories: IRepository[] | undefined): IRepository[] {
   const formattedText = String(text).toLowerCase();
 
   const filteredRepositories = (repositories || []).filter((repo) => {

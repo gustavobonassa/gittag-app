@@ -21,6 +21,15 @@ const repoMock = [
 ] as IRepository[];
 
 describe("filterRepositories logic test", () => {
+  it("doesn't break with null/undefined", () => {
+    const repo = [{}];
+    const logic = filterRepositories("", repo);
+    const logic2 = filterRepositories("", undefined);
+
+    expect(logic.length).toBe(1);
+    expect(logic2.length).toBe(0);
+  });
+
   it("shows all with empty input", () => {
     const logic = filterRepositories("", repoMock);
 
