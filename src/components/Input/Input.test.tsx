@@ -1,6 +1,7 @@
 import { mount, shallow } from "enzyme";
 import * as React from "react";
 import { View } from "react-native";
+import "@testing-library/jest-native";
 
 import Input from "./Input";
 
@@ -12,17 +13,17 @@ describe("Input success tests", () => {
   });
 
   it("respects style prop", () => {
+    const style = {
+      backgroundColor: "purple",
+    };
     const component = mount(
       <Input
-        style={{
-          backgroundColor: "purple",
-        }}
+        style={style}
       />,
     );
     const input = component.find("TextInput");
-    const style = input.prop("style") as any;
 
-    expect(style[2].backgroundColor).toBe("purple");
+    expect(input).toHaveStyle(style);
   });
 
   it("should allow changes to its value", () => {
@@ -72,12 +73,13 @@ describe("Input success tests", () => {
   it("respects disabled prop", () => {
     const component = mount(<Input disabled />);
     const findInput = component.find("TextInput");
-    const style = findInput.prop("style") as any;
 
     expect(findInput.prop("editable")).toBe(false);
 
-    expect(style[1].backgroundColor).toBe("rgba(0, 0, 0, .05)");
-    expect(style[1].color).toBe("rgba(0, 0, 0, .3)");
+    expect(findInput).toHaveStyle({
+      backgroundColor: "rgba(0, 0, 0, .05)",
+      color: "rgba(0, 0, 0, .3)",
+    });
   });
 
   it("should render an icon", () => {
