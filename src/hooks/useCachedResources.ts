@@ -19,6 +19,7 @@ export default function useCachedResources() {
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
+        // tslint:disable-next-line: no-console
         console.warn(e);
       } finally {
         setLoadingComplete(true);
