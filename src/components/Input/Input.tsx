@@ -9,9 +9,20 @@ import {
 import styles from "./Input.style";
 
 interface IInput extends TextInputProps {
+  /**
+   */
   style?: StyleProp<TextStyle>;
+  /**
+   * ref to input
+   */
   inputRef?: any;
+  /**
+   * does not allow editing the input
+   */
   disabled?: boolean;
+  /**
+   * Icon to the right of the input
+   */
   Icon?: any;
 }
 

@@ -1,11 +1,7 @@
 import React from "react";
 import styles from "./Auth.style";
-import { Animated, View, Text, Easing, Keyboard, Platform } from "react-native";
+import { Animated, View, Easing, Keyboard, Platform } from "react-native";
 import Swiper from "../../components/Swiper/Swiper";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import Input from "../../components/Input/Input";
-import Button from "../../components/Button/Button";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
 import store from "../../system/Store";
 import { runInAction } from "mobx";
 import { checkUser, loginUser, signUpUser } from "../../helpers/apiRequests";
@@ -17,19 +13,33 @@ import Intro from "./Steps/Intro";
 import Username from "./Steps/Username";
 import Password from "./Steps/Password";
 
+// tslint:disable-next-line: no-var-requires
 const logo = require("../../assets/images/gitlogo-small.png");
 
 function Auth() {
   const swiper = React.useRef(null) as any;
+
+  // auth fields
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
+
+  /**
+   * New users need to confirm the password and use another
+   * route in the backend
+   */
   const [isNewUser, setIsNewUser] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
 
+  /**
+   * Current Swipe index
+   */
   const [index, setIndex] = React.useState(0);
-  const [height, setHeight] = React.useState(300);
-  const [animation, setAnimation] = React.useState(new Animated.Value(300));
+  const [height] = React.useState(300);
+  /**
+   * Banner animation
+   */
+  const [animation] = React.useState(new Animated.Value(300));
 
   function showBanner() {
     Animated.timing(animation, {
@@ -47,6 +57,9 @@ function Auth() {
     }).start();
   }
 
+  /**
+   * Function called when user clicks "Back"
+   */
   function swiperBack() {
     setLoading(false);
     setPassword("");
@@ -54,8 +67,10 @@ function Auth() {
     swiper?.current?.prev?.();
   }
 
+  /**
+   * Add event listener to check if keyboard has been opened
+   */
   React.useEffect(() => {
-
     if (Platform.OS === "android") {
       Keyboard.addListener("keyboardDidShow", () => hideBanner());
       Keyboard.addListener("keyboardDidHide", () => showBanner());
@@ -74,6 +89,9 @@ function Auth() {
     };
   }, []);
 
+  /**
+   * Checks if the GitHub user exists
+   */
   const checkUserExist = async () => {
     if (!username) {
       toast("Digite seu Github");
@@ -96,6 +114,9 @@ function Auth() {
     setLoading(false);
   };
 
+  /**
+   * This function checks if the user is correct and saves his token in the Mobx store
+   */
   const login = async () => {
     if (!password) {
       toast("Digite sua senha");
@@ -121,14 +142,15 @@ function Auth() {
     }
   };
 
+  /**
+   * This function validates the user's information to create a new account,
+   * sends it to the backend and saves it to the Mobx store
+   */
   const createAccount = async () => {
     const validate = createAccountValidate(password, confirmPassword);
     if (validate) {
       toast(validate);
       return;
-    }
-    if (password !== confirmPassword) {
-      toast("As senhas nao conferem")
     }
     setLoading(true);
     const user = await signUpUser(username, password);
@@ -151,11 +173,14 @@ function Auth() {
     }
   };
 
+  // each array item is a swiper step
   const slides = [
     <Intro
+      key="1"
       onPress={() => swiper?.current?.next?.()}
     />,
     <Username
+      key="2"
       onBack={() => swiperBack()}
       onPress={() => checkUserExist()}
       username={username}
@@ -163,6 +188,7 @@ function Auth() {
       loading={loading}
     />,
     <Password
+      key="3"
       onBack={() => swiperBack()}
       isNewUser={isNewUser}
       setPassword={(e) => setPassword(e)}

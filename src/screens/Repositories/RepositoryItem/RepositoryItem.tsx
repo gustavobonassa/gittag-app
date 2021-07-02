@@ -4,14 +4,21 @@ import { ScrollView, Text, View } from 'react-native';
 
 import styles from "./RepositoryItem.style"
 
-import { AntDesign } from '@expo/vector-icons';
-
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { IRepository } from '../../../types/Repository.interface';
 
 interface IRepositoryItem {
+  /**
+   * A single FlatList repository
+   */
   item: IRepository;
+  /**
+   * Prop called when user clicks on an item
+   */
   onPress: (item: IRepository) => void;
+  /**
+   * Active theme colors
+   */
   colors: any;
 }
 
@@ -24,9 +31,6 @@ const RepositoryItem = (props: IRepositoryItem) => {
       onPress={() => onPress(item)}
       activeOpacity={0.8}
     >
-      {/* <View style={styles.itemLeft}>
-        <AntDesign name="star" size={50} color="orange" />
-      </View> */}
       <View style={styles.itemRight}>
         <Text style={[styles.itemTitle, { color: colors.text }]}>
           {item.name}
@@ -50,7 +54,7 @@ const RepositoryItem = (props: IRepositoryItem) => {
             fadingEdgeLength={50}
             showsHorizontalScrollIndicator={false}
           >
-            {item.tags.map((e: string, i: number) => (
+            {(item?.tags || []).map((e: string, i: number) => (
               <View
                 style={[styles.tagItem, { marginLeft: i === 0 ? 0 : 5 }]}
                 key={i}

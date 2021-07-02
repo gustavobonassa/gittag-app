@@ -12,27 +12,44 @@ import styles from "./Swiper.style";
 const width = Dimensions.get("screen").width;
 
 interface ISwiper {
+  /**
+   * Restarts the slide when it reaches the end
+   */
   loop?: boolean;
+  /**
+   */
   style?: StyleProp<ViewStyle>;
+  /**
+   * called when the index changes
+   */
   onChange: (index: number) => void;
+  /**
+   * current slide
+   */
   index: number;
+  /**
+   * all slides
+   */
   slides: any[];
 }
 
 function Swiper(props: ISwiper, ref: any) {
+  /**
+   * animation type
+   */
   const [type, setType] = React.useState("");
   const [desiredIndex, setDesiredIndex] = React.useState(0) as any;
   const [animation] = React.useState(() => new Animated.Value(0));
   const { slides, index, onChange, loop, style } = props;
 
-  function translate(animation: any, toValue: any, callback?: any) {
+  function translate(a: any, toValue: any, callback?: any) {
     const config = {
       toValue,
       duration: 500,
       easing: Easing.bezier(0.55, 0, 0.1, 1),
       useNativeDriver: true,
     };
-    Animated.timing(animation, config).start(callback);
+    Animated.timing(a, config).start(callback);
   }
 
   function next() {
@@ -68,7 +85,6 @@ function Swiper(props: ISwiper, ref: any) {
     } else if (type === "prev") {
       animation.setValue(0);
       translate(animation, 1, () => {
-        const i = desiredIndex !== null ? desiredIndex : index;
         onChange(index - 1);
         animation.setValue(-1);
         translate(animation, 0, () => setType(""));

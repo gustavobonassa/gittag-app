@@ -4,16 +4,39 @@ import { View, Text } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import Input from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 interface IPassword {
+  /**
+   * next step function
+   */
   onPress: () => void;
+  /**
+   * slide back function
+   */
   onBack: () => void;
+  /**
+   * change password field
+   */
   setPassword: (password: string) => void;
+  /**
+   * change confirm password field
+   */
   setConfirmPassword: (password: string) => void;
+  /**
+   * password field value
+   */
   password: string;
+  /**
+   * confirm password field value
+   */
   confirmPassword: string;
+  /**
+   */
   loading: boolean;
+  /**
+   * the user is creating an account or logging in
+   */
   isNewUser: boolean;
 }
 
@@ -28,6 +51,7 @@ const Password = (props: IPassword) => {
     setConfirmPassword,
     confirmPassword,
   } = props;
+
   return (
     <View style={{ flex: 1 }}>
       <TouchableWithoutFeedback
@@ -35,9 +59,15 @@ const Password = (props: IPassword) => {
         style={styles.backLabel}
       >
         <Ionicons name="chevron-back" size={24} color="#555" />
-        <Text style={styles.inputLabel}>Voltar</Text>
+        <Text style={styles.inputLabel}>
+          Voltar
+        </Text>
       </TouchableWithoutFeedback>
-      <Text style={[styles.inputLabel, { marginTop: 20 }]}>Senha</Text>
+
+      <Text style={[styles.inputLabel, { marginTop: 20 }]}>
+        Senha
+      </Text>
+
       <Input
         placeholder="Digite sua senha"
         autoFocus
@@ -45,6 +75,7 @@ const Password = (props: IPassword) => {
         value={password}
         secureTextEntry
       />
+
       {isNewUser && (
         <>
           <Text style={[styles.inputLabel, { marginTop: 20 }]}>

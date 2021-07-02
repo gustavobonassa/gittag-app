@@ -4,6 +4,9 @@ import { View, Text,} from "react-native";
 import Button from "../../../components/Button/Button";
 
 interface IIntro {
+  /**
+   * next step function
+   */
   onPress: () => void;
 }
 

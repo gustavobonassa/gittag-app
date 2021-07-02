@@ -14,7 +14,11 @@ import { editTag, getRepositories } from "../../helpers/apiRequests";
 import { validateNewTag } from "./Repository.logic";
 import { runInAction } from "mobx";
 
-function RepositoryScreen(props: any) {
+interface IRepositoryScreen {
+  route?: any;
+}
+
+function RepositoryScreen(props: IRepositoryScreen) {
   const [tag, setTag] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [data, setData] = React.useState(props.route?.params?.item || {});
@@ -22,12 +26,17 @@ function RepositoryScreen(props: any) {
   const colorScheme = store.theme;
   const colors = Colors[colorScheme];
 
+  /**
+   * This function updates the new repository tags in state
+   * and synchronizes all the repositories with the backend
+   */
   const updateTag = async(tags: string[]) => {
     setData({
       ...data,
       tags,
     });
 
+    // we need to update all repositories when a tag is updated
     const repositories = await getRepositories(store.token);
 
     if (repositories?.length) {
@@ -37,6 +46,10 @@ function RepositoryScreen(props: any) {
     }
   }
 
+  /**
+   * Function called when user clicks plus button.
+   * This function checks if there is a duplicate tag and saves it in the backend
+   */
   const addTag = async () => {
     setLoading(true);
 
@@ -59,8 +72,12 @@ function RepositoryScreen(props: any) {
     setLoading(false);
   };
 
+  /**
+   * Deleting the tag just removes it from the array
+   * and updates it in the backend, it doesn't have its own route.
+   */
   const deleteTag = async(t: string) => {
-    const tags = data.tags.filter((tag: string) => tag !== t);
+    const tags = data.tags.filter((tg: string) => tg !== t);
 
     const response = await editTag(data.id, tags, store.token);
     updateTag(response?.tags || []);
@@ -68,6 +85,9 @@ function RepositoryScreen(props: any) {
     toast("Tag removida com sucesso");
   }
 
+  /**
+   * Clicking on a tag shows a modal to delete it.
+   */
   const onPressTag = (t: string) => {
     Alert.alert("Deletar Tag", `Tem certeza que deseja deletar a tag ${t}?`, [
       {

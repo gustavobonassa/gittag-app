@@ -7,10 +7,24 @@ import Button from "../../../components/Button/Button";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 
 interface IUsername {
+  /**
+   * next step function
+   */
   onPress: () => void;
+  /**
+   * slide back function
+   */
   onBack: () => void;
+  /**
+   * change username state
+   */
   setUsername: (username: string) => void;
+  /**
+   * GitHub username field
+   */
   username: string;
+  /**
+   */
   loading: boolean;
 }
 
@@ -22,6 +36,7 @@ const Username = (props: IUsername) => {
     setUsername,
     loading,
   } = props;
+
   return (
     <View style={{ flex: 1 }}>
       <TouchableWithoutFeedback
@@ -31,11 +46,13 @@ const Username = (props: IUsername) => {
         <Ionicons name="chevron-back" size={24} color="#555" />
         <Text style={styles.inputLabel}>Voltar</Text>
       </TouchableWithoutFeedback>
+
       <Text style={[styles.inputLabel, { marginTop: 20 }]}>
-        Digite seu Github
+        Digite seu GitHub
       </Text>
+
       <Input
-        placeholder="Nome de usuario do GitHub"
+        placeholder="Nome de usuário do GitHub"
         autoFocus
         onChangeText={(e) => setUsername(e)}
         value={username}
@@ -44,13 +61,14 @@ const Username = (props: IUsername) => {
         )}
         onSubmitEditing={() => onPress()}
       />
+
       <Button
         onPress={() => onPress()}
         style={{
           marginTop: 15,
         }}
         loading={loading}
-        text="Proximo"
+        text="Próximo"
       />
     </View>
   );

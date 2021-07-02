@@ -3,12 +3,30 @@ import { Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from "./Button.style";
 
 interface IButton {
+  /**
+   * does not allow clicking the button
+   */
   disabled?: boolean;
+  /**
+   */
   children?: any;
+  /**
+   * opacity when clicking the button (0 - 1)
+   */
   activeOpacity?: number;
+  /**
+   * button click function
+   */
   onPress?: () => void;
+  /**
+   */
   style?: any;
+  /**
+   * button text
+   */
   text?: string;
+  /**
+   */
   loading?: boolean;
 }
 

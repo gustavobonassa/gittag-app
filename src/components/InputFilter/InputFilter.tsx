@@ -13,12 +13,31 @@ import styles from "./InputFilter.style";
 import { FontAwesome, } from "@expo/vector-icons";
 
 interface IInputFilter extends TextInputProps {
+  /**
+   * is using the dark theme
+   */
   dark?: boolean;
+  /**
+   */
   style?: StyleProp<TextStyle>;
+  /**
+   * ref to input
+   */
   inputFilterRef?: any;
+  /**
+   * does not allow editing the input
+   */
   disabled?: boolean;
+  /**
+   * function called by clicking the clear button
+   */
   onClear?: () => void;
+  /**
+   */
   styleContainer?: StyleProp<ViewStyle>;
+  /**
+   * current theme colors
+   */
   colors?: any;
 }
 
@@ -32,6 +51,9 @@ function InputFilter(props: IInputFilter) {
     disabled
   } = props;
 
+  /**
+   * when the focus is active, the clear button appears
+   */
   const [focused, setFocused] = React.useState(false);
 
   return (

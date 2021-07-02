@@ -22,13 +22,27 @@ interface IRepositoriesScreen {
 function RepositoriesScreen(props: IRepositoriesScreen) {
   const { navigation } = props;
 
+  /**
+   * This state checks if an update of the repositories is in progress.
+   * It is mandatory in order to use FlatList's onRefresh function
+   */
   const [refreshing, setRefreshing] = React.useState(false);
+  /**
+   * Search input text
+   */
   const [text, setText] = React.useState("");
 
+  /**
+   * We need to sync the repositories when the user enters this screen
+   */
   React.useEffect(() => {
     getStarredRepositories();
   }, []);
 
+  /**
+   * This function get the starred repositories of the user
+   * and saved in the Mobx store
+   */
   async function getStarredRepositories() {
     if (store.token) {
       setRefreshing(true);
