@@ -39,8 +39,8 @@ const Username = (props: IUsername) => {
         autoFocus
         onChangeText={(e) => setUsername(e)}
         value={username}
-        Icon={(props: any) => (
-          <AntDesign name="github" size={25} color="black" {...props} />
+        Icon={(iconProps: any) => (
+          <AntDesign name="github" size={25} color="black" {...iconProps} />
         )}
         onSubmitEditing={() => onPress()}
       />
