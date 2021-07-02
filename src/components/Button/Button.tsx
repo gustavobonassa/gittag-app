@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity, ActivityIndicator, StyleProp, ViewStyle, TextStyle } from 'react-native';
+import { Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from "./Button.style";
 
 interface IButton {
@@ -34,6 +34,7 @@ function Button(props: IButton) {
         <ActivityIndicator
           color="white"
           size="small"
+          testID="loading-test"
         />
       ) : children ? (
         children

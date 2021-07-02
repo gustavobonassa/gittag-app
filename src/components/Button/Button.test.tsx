@@ -1,38 +1,70 @@
-import renderer from 'react-test-renderer';
-
+import { mount } from "enzyme";
 import * as React from "react";
 
 import Button from "./Button";
 
 describe("Button success tests", () => {
   it("renders without crashing", () => {
-    const component = renderer.create(
+    const component = mount(
       <Button />
     );
 
-    expect(component?.root?.children?.length).toBe(1);
+    expect(component).toHaveLength(1);
   });
 
-  it("Button click should work", () => {
+  it("should execute onPress function when clicked", () => {
     let clicked = false;
-    const temp = renderer.create(
+    const component = mount(
       <Button onPress={() => { clicked = true; }} />,
     );
-
-    temp.root.props.onPress();
+    component.simulate("click");
     expect(clicked).toBe(true);
   });
 
-  it("should receive a style as prop", () => {
-    const temp = renderer.create(
+  it("should render a text as children", () => {
+    const component = mount(
+      <Button onPress={() => ({})}>
+        Hello world
+      </Button>,
+    );
+
+    expect(component.first().text()).toBe("Hello world");
+  });
+
+  it("should receive a text as prop", () => {
+    const component = mount(
       <Button
         onPress={() => ({})}
-        style={{
-          backgroundColor: "red"
-        }}
+        text="It's me, Mario!"
       />,
     );
 
-    expect(temp.root.props.style).toStrictEqual({ backgroundColor: "red" });
+    expect(component.first().text()).toBe("It's me, Mario!");
+  });
+
+  it("respects style prop", () => {
+    const component = mount(
+      <Button
+        onPress={() => ({})}
+        style={{
+          backgroundColor: "purple",
+        }}
+      />,
+    );
+    const domNode = component.getDOMNode();
+    const backgroundDomNode = getComputedStyle(domNode).backgroundColor;
+    expect(backgroundDomNode).toBe("purple");
+  });
+
+  it("respects loading prop", () => {
+    const component = mount(
+      <Button
+        onPress={() => ({})}
+        loading
+      />,
+    );
+    const loadingComp = component.findWhere((node) => node.prop("testID") === "loading-test");
+
+    expect(loadingComp.exists()).toBe(true);
   });
 });
