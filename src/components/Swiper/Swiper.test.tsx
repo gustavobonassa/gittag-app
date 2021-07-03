@@ -5,13 +5,9 @@ import "@testing-library/jest-native";
 import Swiper from "./Swiper";
 import { Text } from "react-native";
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
+jest.useFakeTimers();
 
 describe("Swiper success tests", () => {
-  beforeEach(() => {
-
-    // Need to fake the timers for timeTravel to work
-    jest.useFakeTimers()
-})
 
   it("renders without crashing", () => {
     const component = mount(
@@ -25,26 +21,101 @@ describe("Swiper success tests", () => {
     expect(component).toHaveLength(1);
   });
 
-  // it("should change ", () => {
-  //   const ref = React.createRef() as any;
-  //   const func = jest.fn();
-  //   let newIndex = 0;
-  //   const component = mount(
-  //     <>
-  //       <Swiper
-  //         onChange={(i) => newIndex = i}
-  //         index={0}
-  //         slides={[]}
-  //         ref={ref}
-  //       />
-  //     </>
-  //   );
-  //   // ref?.current?.next();
-  //   // console.log(component)
-  //   // const ref = component.instance().
+  it("should change to the next slide when calling the next function", () => {
+    const ref = React.createRef() as any;
+    let newIndex = 0;
+    mount(
+      <>
+        <Swiper
+          onChange={(i) => newIndex = i}
+          index={newIndex}
+          slides={[]}
+          ref={ref}
+        />
+      </>
+    );
+    ref?.current?.next();
+    jest.advanceTimersByTime(1000);
 
-  //   expect(newIndex).toBe(1);
-  // });
+    expect(newIndex).toBe(1);
+  });
+
+  it("should change to the previous slide when calling the prev function", () => {
+    const ref = React.createRef() as any;
+    let newIndex = 10;
+    mount(
+      <>
+        <Swiper
+          onChange={(i) => newIndex = i}
+          index={newIndex}
+          slides={[]}
+          ref={ref}
+        />
+      </>
+    );
+    ref?.current?.prev();
+    jest.advanceTimersByTime(1000);
+
+    expect(newIndex).toBe(9);
+  });
+
+  it("should not change the previous slide when the index is 0", () => {
+    const ref = React.createRef() as any;
+    let newIndex = 0;
+    mount(
+      <>
+        <Swiper
+          onChange={(i) => newIndex = i}
+          index={0}
+          slides={[]}
+          ref={ref}
+        />
+      </>
+    );
+    ref?.current?.prev();
+    jest.advanceTimersByTime(1000);
+
+    expect(newIndex).toBe(0);
+  });
+
+  it("should change for the selected slide when calling the goTo function", () => {
+    const ref = React.createRef() as any;
+    let newIndex = 10;
+    mount(
+      <>
+        <Swiper
+          onChange={(i) => newIndex = i}
+          index={newIndex}
+          slides={[]}
+          ref={ref}
+        />
+      </>
+    );
+    ref?.current?.goTo(50);
+    jest.advanceTimersByTime(1000);
+
+    expect(newIndex).toBe(50);
+  });
+
+  it("respects loop prop", () => {
+    const ref = React.createRef() as any;
+    let newIndex = 10;
+    mount(
+      <>
+        <Swiper
+          onChange={(i) => newIndex = i}
+          index={newIndex}
+          slides={[]}
+          ref={ref}
+          loop
+        />
+      </>
+    );
+    ref?.current?.next();
+    jest.advanceTimersByTime(1000);
+
+    expect(newIndex).toBe(0);
+  });
 
   it("respects style prop", () => {
     const style = {
