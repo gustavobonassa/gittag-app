@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Auth.style";
-import { Animated, View, Easing, Keyboard, Platform } from "react-native";
+import { Animated, View, Easing } from "react-native";
 import Swiper from "../../components/Swiper/Swiper";
 import store from "../../system/Store";
 import { runInAction } from "mobx";
@@ -35,11 +35,11 @@ function Auth() {
    * Current Swipe index
    */
   const [index, setIndex] = React.useState(0);
-  const [height] = React.useState(300);
+  const [height, setHeight] = React.useState(0);
   /**
    * Banner animation
    */
-  const [animation] = React.useState(new Animated.Value(300));
+  const [animation, setAnimation] = React.useState(new Animated.Value(300));
 
   function showBanner() {
     Animated.timing(animation, {
@@ -57,6 +57,14 @@ function Auth() {
     }).start();
   }
 
+  function onLoadBanner(e: any) {
+    if (!height) {
+      const h = e.nativeEvent.layout.height;
+      setAnimation(new Animated.Value(h));
+      setHeight(h);
+    }
+  }
+
   /**
    * Function called when user clicks "Back"
    */
@@ -68,26 +76,14 @@ function Auth() {
   }
 
   /**
-   * Add event listener to check if keyboard has been opened
    */
   React.useEffect(() => {
-    if (Platform.OS === "android") {
-      Keyboard.addListener("keyboardDidShow", () => hideBanner());
-      Keyboard.addListener("keyboardDidHide", () => showBanner());
+    if (index > 0) {
+      hideBanner();
     } else {
-      Keyboard.addListener("keyboardWillShow", () => hideBanner());
-      Keyboard.addListener("keyboardWillHide", () => showBanner());
+      showBanner();
     }
-    return () => {
-      if (Platform.OS === "android") {
-        Keyboard.removeListener("keyboardDidShow", () => hideBanner());
-        Keyboard.removeListener("keyboardDidHide", () => showBanner());
-      } else {
-        Keyboard.removeListener("keyboardWillShow", () => hideBanner());
-        Keyboard.removeListener("keyboardWillHide", () => showBanner());
-      }
-    };
-  }, []);
+  }, [index]);
 
   /**
    * Checks if the GitHub user exists
@@ -101,7 +97,7 @@ function Auth() {
     const userExist = await checkUser(username);
 
     if (userExist.error) {
-      toast(userExist.error || "Usuario nao existe no Github");
+      toast(userExist.error || "Usuário não existe no Github");
       setLoading(false);
       return;
     }
@@ -208,7 +204,10 @@ function Auth() {
 
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.banner, { height: animation }]}>
+      <Animated.View
+        style={[styles.banner, height ? { height: animation } : null]}
+        onLayout={onLoadBanner}
+      >
         <LinearGradient
           colors={['#f100d1cc', '#4d50fd']}
           style={styles.background}

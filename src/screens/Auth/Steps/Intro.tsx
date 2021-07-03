@@ -26,8 +26,14 @@ const Intro = (props: IIntro) => {
         <Text style={styles.slideOneList}>
           - Agora com modo escuro!
         </Text>
+        <Button
+          onPress={() => props.onPress()}
+          text="Entrar"
+          style={{
+            marginTop: 15,
+          }}
+        />
       </View>
-      <Button onPress={() => props.onPress()} text="Entrar" />
     </View>
   );
 }

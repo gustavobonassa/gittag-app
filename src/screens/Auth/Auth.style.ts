@@ -50,8 +50,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   slideOneList: {
-    fontSize: 18,
+    fontSize: 20,
     textAlign: "center",
+    marginTop: 5,
     color: "#666"
   },
   background: {
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    height: 300,
+    height: "100%",
   },
 });
 
