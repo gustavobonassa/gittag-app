@@ -5,7 +5,7 @@
 </p>
 
 ## Instalação
-Caso tenha android você pode baixar o apk por aqui: [Google Drive](https://drive.google.com/file/d/1fsprSDjwwFjtf2_K2FzB8PuR-wl_bCT9/view?usp=sharing) ou [OneDrive](https://udesc-my.sharepoint.com/:u:/g/personal/09845549985_edu_udesc_br/ES0lYe9N5HxDjED4a-gkaNkBs_7egJ7OTwnDE7t_SrxLaw?e=tSqMn9). Caso tenha Iphone <del>sinto muito</del> você pode executar o projeto e usar seu celular como emulador, disponível no passo [Como executar](#como-executar)
+Caso tenha android você pode baixar o apk por aqui: [Google Drive](https://drive.google.com/file/d/18rVWxuRIbaWnu1_15UM4wSj3OjnHgvP2/view?usp=sharing) ou [OneDrive](https://udesc-my.sharepoint.com/:u:/g/personal/09845549985_edu_udesc_br/EWJQSXahGFhPj22udUEmabMBcAQPhPXvgJ4o1Y7wixGGGA?e=K14h7l). Caso tenha Iphone <del>sinto muito</del> você pode executar o projeto e usar seu celular como emulador, disponível no passo [Como executar](#como-executar)
 
 ## Sobre o projeto
 
@@ -25,37 +25,45 @@ Para o gerenciamento de estados globais foi utilizado o [Mobx](https://mobx.js.o
 
 ## Telas
 
-### Login/Registrar
+<table>
+	<tr>
+		<th width="33.3%">
+			Login/Registrar<br>
+		</th>
+		<th width="33.3%">
+			Lista de repositórios
+		</th>
+	</tr>
+	<tr><!-- Prevent zebra stripes --></tr>
+	<tr>
+		<td>
+			<img width="618" src="https://i.imgur.com/tbJTI1b.gif">
+		</td>
+		<td>
+			<img width="618" src="https://i.imgur.com/cVzolzG.gif">
+		</td>
+	</tr>
+</table>
 
-Nessa tela você pode fazer login ou se registrar, o backend vai identificar se seu nome de usuário do GitHub já possui uma conta.
-
-<p align="center">
-  <img src="https://i.imgur.com/tmULRVt.gif" width="300">
-</p>
-
-### Lista de repositórios
-
-Essa tela lista todos os seus repositórios marcados com estrela no GitHub e também suas Tags adicionadas
-
-<p align="center">
-  <img src="https://i.imgur.com/cVzolzG.gif" width="300">
-</p>
-
-### Repositório
-
-Essa tela mostra as informações de um único repositório e permite adicionar ou remover Tags
-
-<p align="center">
-  <img src="https://i.imgur.com/uNz6Nok.gif" width="300">
-</p>
-
-### Configurações
-
-Essa tela permite alterar o tema do aplicativo e tambem sair da sua conta
-
-<p align="center">
-  <img src="https://i.imgur.com/FZgl0Pt.gif" width="300">
-</p>
+<table>
+	<tr>
+		<th width="33.3%">
+			Repositório
+		</th>
+		<th width="33.3%">
+			Configurações
+		</th>
+	</tr>
+	<tr><!-- Prevent zebra stripes --></tr>
+	<tr>
+		<td>
+			<img width="618" src="https://i.imgur.com/uNz6Nok.gif">
+		</td>
+		<td>
+			<img width="618" src="https://i.imgur.com/FZgl0Pt.gif">
+		</td>
+	</tr>
+</table>
 
 ## <a id="como-executar"></a>Como executar
 
@@ -79,20 +87,28 @@ Voce pode rodar um emulador ou baixar o app Expo Go no seu celular e ler o QR Co
 
 Link para o backend: [Backend GitTag](https://github.com/gustavobonassa/gittag-backend)
 
+## Testes
+
+Todos os componentes e lógicas foram testados. O teste de cada componente ou lógica fica na mesma pasta que o componente testado.
+
 Para rodar os testes:
 ```
 yarn test
 ```
 
+Vai aparecer uma tela assim:
+
+<p align="center">
+  <img src="https://i.imgur.com/WlD6zUj.png" width="500">
+</p>
+
 ## Considerações
 
 - A lógica que eu usei no backend pra armazenar os repositórios e tal não foi a melhor escolha. Dito isso, também não foi feito testes e foi tudo feito em JavaScript. Já que o prazo era curto, eu fiz o backend da forma mais simples que consegui e armazenei meus esforços para o Mobile.
 
-- Faltou varios testes para componentes e telas por falta de tempo. (Vou tentar fazer ainda essa semana, mesmo que ja tenham avaliado)
+- O backend só atualiza os repositórios com estrela quando faz login ou cria conta.
 
-- O backend só atualiza os repositórios com estrela quando faz login ou cria conta
-
-- Falta adicionar comentários no código
+- Meu teclado não tem acento, coloquei depois, mas devo ter esquecido alguns lugares.
 
 ## Contato para Spam
 

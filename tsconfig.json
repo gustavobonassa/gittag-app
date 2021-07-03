@@ -6,7 +6,10 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "jsx": "react-native",
-    "lib": ["es2018", "dom"],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "module": "es2015",
     "moduleResolution": "node",
     "noEmitHelpers": true,
@@ -16,5 +19,8 @@
     "strict": true,
     "target": "es2018"
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ],
+  "extends": "expo/tsconfig.base"
 }
