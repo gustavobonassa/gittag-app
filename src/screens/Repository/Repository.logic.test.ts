@@ -9,6 +9,12 @@ const data = {
 } as IRepository;
 
 describe("validateNewTag logic test", () => {
+  it("doesn't break with undefined", () => {
+    const logic = validateNewTag("test", undefined);
+
+    expect(logic).toBe(false);
+  });
+
   it("check if the tag is blank", () => {
     const logic = validateNewTag("", data);
 
